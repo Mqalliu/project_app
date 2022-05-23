@@ -9,7 +9,8 @@ if uploaded_file is not None:
      # To read file as string:
      stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
      string_data = stringio.read()
-     st.write(string_data)
+     text = string_data
+     st.write(text)
 
 #INPUT CARD: TEXT INPUT
 # ask the user the language in which the text is written
@@ -32,6 +33,13 @@ if uploaded_file is not None:
      lang = 'it'
    else:
      pass
+
+#passing time
+import time
+my_bar = st.progress(0)
+for percent_complete in range(100):
+     time.sleep(0.1)
+     my_bar.progress(percent_complete + 1)
 
 #spelling and grammar check
 #PROCESS CARD: FIX SPELLING AND GRAMMAR WITH LANGUAGE TOOL
