@@ -36,9 +36,6 @@ if uploaded_file is not None:
    else:
      pass
 
-#passing time
-st.spinner(text="In progress...")
-
 #spelling and grammar check
 #PROCESS CARD: FIX SPELLING AND GRAMMAR WITH LANGUAGE TOOL
 #check API documentation 
