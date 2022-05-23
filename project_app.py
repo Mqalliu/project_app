@@ -1,5 +1,6 @@
 import streamlit as st
-from io import stringio 
+from io import StringIO
+stringio = StringIO(file.getvalue().decode("utf-8"))
 
 #INPUT CARD: TEXT FILE
 # Open a file to read
