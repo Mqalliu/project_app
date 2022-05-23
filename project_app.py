@@ -2,10 +2,11 @@ import streamlit as st
 
 #INPUT CARD: TEXT FILE
 # Open a file to read
-st.file_uploader("Choose a .txt file", type='txt', accept_multiple_files=False)
-# Read the file
-stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
-st.write(stringio)
+uploaded_file = st.file_uploader("Choose a .txt file")
+if uploaded_file is not None:
+     # To read file as string:
+     string_data = stringio.read()
+     st.write(string_data)
 
 #INPUT CARD: TEXT INPUT
 # ask the user the language in which the text is written
