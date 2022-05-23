@@ -1,7 +1,7 @@
 import streamlit as st
 from io import StringIO
 
-
+st.header("Hi, use this app to check the grammar and the spelling of your text!")
 #INPUT CARD: TEXT FILE
 # Open a file to read
 uploaded_file = st.file_uploader("Choose a .txt file")
@@ -10,6 +10,7 @@ if uploaded_file is not None:
      stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
      string_data = stringio.read()
      text = string_data
+     st.subheader("This is your original text:")
      st.write(text)
 
 #INPUT CARD: TEXT INPUT
@@ -35,11 +36,9 @@ if uploaded_file is not None:
      pass
 
 #passing time
-import time
-my_bar = st.progress(0)
-for percent_complete in range(100):
-     time.sleep(0.1)
-     my_bar.progress(percent_complete + 1)
+with st.spinner('Wait for it...'):
+    time.sleep(10)
+st.success('Done!')
 
 #spelling and grammar check
 #PROCESS CARD: FIX SPELLING AND GRAMMAR WITH LANGUAGE TOOL
@@ -81,6 +80,8 @@ for key, value in replacements.items():
     
 #new text with changes + downloadable text file with the changes
 #OUTPUT CARD: text to be displayed
+st.subheader("This is your text with some corrections and some more interesting adjectives:")
 st.write(correct_text)
 #OUTPUT CARD: downloadable new text
+st.subheader("If you like this version, you can download it!")
 st.download_button('Download your corrected text', correct_text, file_name='corrected_text.txt')
