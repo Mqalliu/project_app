@@ -1,4 +1,5 @@
-jdk
+default-jre
+default-jdk
 language_tool_python
 textblob
 nltk
