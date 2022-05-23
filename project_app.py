@@ -1,5 +1,5 @@
 import streamlit as st
-from io import StringIO 
+from io import stringio 
 
 #INPUT CARD: TEXT FILE
 # Open a file to read
