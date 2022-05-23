@@ -15,20 +15,20 @@ if uploaded_file is not None:
      "In which language is your text written?",
      ('American English', 'German', 'French', 'Spanish', 'Italian'))
      st.write('You selected:', language_option)
-
-lang = ' '
-if language_option.lower() == 'american english':
-  lang = 'en-US'
-elif language_option.lower() == 'german':
-  lang = 'de'
-elif language_option.lower() == 'french':
-  lang = 'fr'
-elif language_option.lower() == 'spanish':
-  lang = 'es'
-elif language_option.lower() == 'italian':
-  lang = 'it'
-else:
-  pass
+if uploaded_file is not None:
+   lang = ' '
+   if language_option.lower() == 'american english':
+     lang = 'en-US'
+   elif language_option.lower() == 'german':
+     lang = 'de'
+   elif language_option.lower() == 'french':
+     lang = 'fr'
+   elif language_option.lower() == 'spanish':
+     lang = 'es'
+   elif language_option.lower() == 'italian':
+     lang = 'it'
+   else:
+     pass
 
 #spelling and grammar check
 #PROCESS CARD: FIX SPELLING AND GRAMMAR WITH LANGUAGE TOOL
