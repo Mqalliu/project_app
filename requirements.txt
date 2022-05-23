@@ -1,4 +1,4 @@
-java
+jdk
 language_tool_python
 textblob
 nltk
