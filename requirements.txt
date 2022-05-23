@@ -1,4 +1,3 @@
-io
 language_tool_python
 textblob
 nltk
