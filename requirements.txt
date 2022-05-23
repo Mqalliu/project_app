@@ -1,6 +1,4 @@
 language_tool_python
 textblob
 nltk
-json
-requests
 re
