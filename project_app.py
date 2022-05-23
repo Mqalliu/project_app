@@ -1,3 +1,5 @@
+import streamlit as st
+
 #INPUT CARD: TEXT FILE
 # Open a file to read
 st.file_uploader("Choose a .txt file", type=txt, accept_multiple_files=False)
