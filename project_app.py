@@ -16,8 +16,9 @@ if uploaded_file is not None:
 #INPUT CARD: TEXT INPUT
 # ask the user the language in which the text is written
 if uploaded_file is not None:
+     st.subheader("In which language is your text written?")
      language_option = st.radio(
-     "In which language is your text written?",
+     "Choose from the following:",
      ('American English', 'German', 'French', 'Spanish', 'Italian'))
      st.write('You selected:', language_option)
 if uploaded_file is not None:
@@ -36,9 +37,7 @@ if uploaded_file is not None:
      pass
 
 #passing time
-with st.spinner('Wait for it...'):
-    time.sleep(10)
-st.success('Done!')
+st.spinner(text="In progress...")
 
 #spelling and grammar check
 #PROCESS CARD: FIX SPELLING AND GRAMMAR WITH LANGUAGE TOOL
