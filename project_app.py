@@ -10,10 +10,11 @@ if uploaded_file is not None:
 
 #INPUT CARD: TEXT INPUT
 # ask the user the language in which the text is written
-language_option = st.radio(
+if uploaded_file is not None:
+     language_option = st.radio(
      "In which language is your text written?",
-     ('American English', 'Germnan', 'French', 'Spanish', 'Italian'))
-st.write('You selected:', language_option)
+     ('American English', 'German', 'French', 'Spanish', 'Italian'))
+     st.write('You selected:', language_option)
 
 lang = ' '
 if language_option.lower() == 'american english':
