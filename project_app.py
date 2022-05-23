@@ -46,41 +46,47 @@ st.spinner(text="In progress...")
 #https://languagetool.org/http-api/swagger-ui/#!/default/post_check
 #https://pypi.org/project/language-tool-python/
 #https://predictivehacks.com/languagetool-grammar-and-spell-checker-in-python/#:~:text=LanguageTool%20is%20an%20open%2Dsource,through%20a%20command%2Dline%20interface.
-import language_tool_python
-tool = language_tool_python.LanguageTool(lang)
-matches = tool.check(text)
-correct_text = tool.correct(text)
+if uploaded_file is not None:
+     import language_tool_python
+     tool = language_tool_python.LanguageTool(lang)
+     matches = tool.check(text)
+     correct_text = tool.correct(text)
 
 #adjectives analysis
 #PROCESS CARD: TOKENIZE
 #https://pypi.org/project/textblob/
-import textblob            #to import
-from textblob import TextBlob
-import nltk
-nltk.download('all')
-blob = TextBlob(correct_text)
-adjectives = [token[0] for token in blob.tags if token[1].startswith('JJ')]
+if uploaded_file is not None:
+     import textblob            #to import
+     from textblob import TextBlob
+     import nltk
+     nltk.download('all')
+     blob = TextBlob(correct_text)
+     adjectives = [token[0] for token in blob.tags if token[1].startswith('JJ')]
 
 #PROCESS CARD: SYNONIMS
 ## See API at http://www.datamuse.com/api/
-import json,requests
-repl = [ ]
-for element in adjectives:
-  url= 'https://api.datamuse.com/words?ml=' + element + '&max=1'
-  response = requests.get(url)  
-  dataFromDatamuse = json.loads(response.text) 
-  for eachentry in dataFromDatamuse:
-    repl.append(eachentry['word'])
+if uploaded_file is not None:
+     import json,requests
+     repl = [ ]
+     for element in adjectives:
+          url= 'https://api.datamuse.com/words?ml=' + element + '&max=1'
+          response = requests.get(url)  
+          dataFromDatamuse = json.loads(response.text) 
+          for eachentry in dataFromDatamuse:
+               repl.append(eachentry['word'])
 
-import re 
-replacements = {k:v for k,v in zip(adjectives, repl)}
-for key, value in replacements.items(): 
-    correct_text = correct_text.replace(key, value) 
+if uploaded_file is not None:
+     import re 
+     replacements = {k:v for k,v in zip(adjectives, repl)}
+     for key, value in replacements.items(): 
+          correct_text = correct_text.replace(key, value) 
     
 #new text with changes + downloadable text file with the changes
 #OUTPUT CARD: text to be displayed
-st.subheader("This is your text with some corrections and some more interesting adjectives:")
-st.write(correct_text)
+if uploaded_file is not None:
+     st.subheader("This is your text with some corrections and some more interesting adjectives:")
+     st.write(correct_text)
 #OUTPUT CARD: downloadable new text
-st.subheader("If you like this version, you can download it!")
-st.download_button('Download your corrected text', correct_text, file_name='corrected_text.txt')
+if uploaded_file is not None:
+     st.subheader("If you like this version, you can download it!")
+     st.download_button('Download your corrected text', correct_text, file_name='corrected_text.txt')
