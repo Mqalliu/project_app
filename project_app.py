@@ -1,12 +1,13 @@
 import streamlit as st
 from io import StringIO
-stringio = StringIO(file.getvalue().decode("utf-8"))
+
 
 #INPUT CARD: TEXT FILE
 # Open a file to read
 uploaded_file = st.file_uploader("Choose a .txt file")
 if uploaded_file is not None:
      # To read file as string:
+     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
      string_data = stringio.read()
      st.write(string_data)
 
