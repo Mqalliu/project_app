@@ -37,6 +37,10 @@ if uploaded_file is not None:
    else:
      pass
 
+
+
+
+
 #spelling and grammar check
 #PROCESS CARD: FIX SPELLING AND GRAMMAR WITH LANGUAGE TOOL
 #check API documentation 
@@ -45,10 +49,11 @@ if uploaded_file is not None:
 #https://pypi.org/project/language-tool-python/
 #https://predictivehacks.com/languagetool-grammar-and-spell-checker-in-python/#:~:text=LanguageTool%20is%20an%20open%2Dsource,through%20a%20command%2Dline%20interface.
 if uploaded_file is not None:
-     import language_tool_python
-     tool = language_tool_python.LanguageTool(lang)
-     matches = tool.check(text)
-     correct_text = tool.correct(text)
+     with st.spinner('In progress...'):
+          import language_tool_python
+          tool = language_tool_python.LanguageTool(lang)
+          matches = tool.check(text)
+          correct_text = tool.correct(text)
 
 #adjectives analysis
 #PROCESS CARD: TOKENIZE
@@ -82,6 +87,7 @@ if uploaded_file is not None:
 #new text with changes + downloadable text file with the changes
 #OUTPUT CARD: text to be displayed
 if uploaded_file is not None:
+     st.success('Done!')
      st.subheader("This is your text with some corrections and some more interesting adjectives:")
      st.write(correct_text)
 #OUTPUT CARD: downloadable new text
