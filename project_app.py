@@ -75,7 +75,7 @@ if uploaded_file is not None:
           import json,requests
           repl = [ ]
           for element in adjectives:
-               url= 'https://api.datamuse.com/words?ml=' + element + '&max=1'
+               url= 'https://api.datamuse.com/words?ml=' + element + '&max=1' #ml = means like --> to get synonyms 
                response = requests.get(url)  
                dataFromDatamuse = json.loads(response.text) 
                for eachentry in dataFromDatamuse:
