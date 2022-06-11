@@ -25,7 +25,7 @@ if uploaded_file is not None:
 if uploaded_file is not None:
    lang = ' '
    if language_option.lower() == 'english':
-     lang = 'en-GB'
+     lang = 'en-US'
    elif language_option.lower() == 'german':
      lang = 'de'
    elif language_option.lower() == 'french':
