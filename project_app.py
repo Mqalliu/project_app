@@ -20,12 +20,12 @@ if uploaded_file is not None:
      st.subheader("In which language is your text written?")
      language_option = st.radio(
      "Choose from the following:",
-     ('American English', 'German', 'French', 'Spanish', 'Italian'))
+     ('English', 'German', 'French', 'Spanish', 'Italian'))
      st.write('You selected:', language_option)
 if uploaded_file is not None:
    lang = ' '
-   if language_option.lower() == 'american english':
-     lang = 'en-US'
+   if language_option.lower() == 'english':
+     lang = 'en-GB'
    elif language_option.lower() == 'german':
      lang = 'de'
    elif language_option.lower() == 'french':
