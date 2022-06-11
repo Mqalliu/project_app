@@ -1,7 +1,8 @@
 import streamlit as st
 from io import StringIO
 
-st.header("Hi, use this app to check the grammar and the spelling of your text!")
+st.title("CheckMe: make your texts better")
+st.subheader("Use this app to check the grammar and the spelling of your text and to improve some vocabulary!")
 #INPUT CARD: TEXT FILE
 # Open a file to read
 uploaded_file = st.file_uploader("Choose a .txt file")
