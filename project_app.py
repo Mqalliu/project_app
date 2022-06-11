@@ -4,6 +4,7 @@ from io import StringIO
 st.title("CheckMe: make your texts better")
 st.subheader("Use this app to check the grammar and the spelling of your text and to improve some vocabulary!")
 #INPUT CARD: TEXT FILE
+#Theory in streamlit docs: https://docs.streamlit.io/library/api-reference/widgets/st.file_uploader
 # Open a file to read
 uploaded_file = st.file_uploader("Choose a .txt file")
 if uploaded_file is not None:
@@ -16,6 +17,7 @@ if uploaded_file is not None:
 
 #INPUT CARD: TEXT INPUT
 # ask the user the language in which the text is written
+#Theory in streamlit docs: https://docs.streamlit.io/library/api-reference/widgets/st.radio
 if uploaded_file is not None:
      st.subheader("In which language is your text written?")
      language_option = st.radio(
@@ -37,10 +39,6 @@ if uploaded_file is not None:
    else:
      pass
 
-
-
-
-
 #spelling and grammar check
 #PROCESS CARD: FIX SPELLING AND GRAMMAR WITH LANGUAGE TOOL
 #check API documentation 
@@ -52,7 +50,6 @@ if uploaded_file is not None:
      with st.spinner('In progress...'):
           import language_tool_python
           tool = language_tool_python.LanguageTool(lang)
-          matches = tool.check(text)
           correct_text = tool.correct(text)
 
 #adjectives analysis
@@ -65,10 +62,14 @@ if uploaded_file is not None:
           import nltk
           nltk.download('all')
           blob = TextBlob(correct_text)
-          adjectives = [token[0] for token in blob.tags if token[1].startswith('JJ')]
+          adjectives = []
+          for token in blob.tags:
+               if token[1].startswith('JJ'):
+                    adjectives.append(token[0])
 
 #PROCESS CARD: SYNONIMS
 ## See API at http://www.datamuse.com/api/
+#theory from Class4 Module2
 if uploaded_file is not None:
      with st.spinner('In progress...'):
           import json,requests
@@ -80,6 +81,7 @@ if uploaded_file is not None:
                for eachentry in dataFromDatamuse:
                     repl.append(eachentry['word'])
 
+#inspiration from exercise "quizzes_dictionaries_iteration_comprehension.ipynb" from Class16 Module1                    
 if uploaded_file is not None:
      with st.spinner('In progress...'):
           import re 
@@ -94,6 +96,7 @@ if uploaded_file is not None:
      st.subheader("This is your text with some corrections and some more interesting adjectives:")
      st.write(correct_text)
 #OUTPUT CARD: downloadable new text
+#Theory in streamlit docs: https://docs.streamlit.io/library/api-reference/widgets/st.download_button
 if uploaded_file is not None:
      st.subheader("If you like this version, you can download it!")
      st.download_button('Download your corrected text', correct_text, file_name='corrected_text.txt')
