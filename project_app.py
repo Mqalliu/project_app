@@ -59,30 +59,33 @@ if uploaded_file is not None:
 #PROCESS CARD: TOKENIZE
 #https://pypi.org/project/textblob/
 if uploaded_file is not None:
-     import textblob            #to import
-     from textblob import TextBlob
-     import nltk
-     nltk.download('all')
-     blob = TextBlob(correct_text)
-     adjectives = [token[0] for token in blob.tags if token[1].startswith('JJ')]
+     with st.spinner('In progress...'):
+          import textblob            #to import
+          from textblob import TextBlob
+          import nltk
+          nltk.download('all')
+          blob = TextBlob(correct_text)
+          adjectives = [token[0] for token in blob.tags if token[1].startswith('JJ')]
 
 #PROCESS CARD: SYNONIMS
 ## See API at http://www.datamuse.com/api/
 if uploaded_file is not None:
-     import json,requests
-     repl = [ ]
-     for element in adjectives:
-          url= 'https://api.datamuse.com/words?ml=' + element + '&max=1'
-          response = requests.get(url)  
-          dataFromDatamuse = json.loads(response.text) 
-          for eachentry in dataFromDatamuse:
-               repl.append(eachentry['word'])
+     with st.spinner('In progress...'):
+          import json,requests
+          repl = [ ]
+          for element in adjectives:
+               url= 'https://api.datamuse.com/words?ml=' + element + '&max=1'
+               response = requests.get(url)  
+               dataFromDatamuse = json.loads(response.text) 
+               for eachentry in dataFromDatamuse:
+                    repl.append(eachentry['word'])
 
 if uploaded_file is not None:
-     import re 
-     replacements = {k:v for k,v in zip(adjectives, repl)}
-     for key, value in replacements.items(): 
-          correct_text = correct_text.replace(key, value) 
+     with st.spinner('In progress...'):
+          import re 
+          replacements = {k:v for k,v in zip(adjectives, repl)}
+          for key, value in replacements.items(): 
+               correct_text = correct_text.replace(key, value) 
     
 #new text with changes + downloadable text file with the changes
 #OUTPUT CARD: text to be displayed
